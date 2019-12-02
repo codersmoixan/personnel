@@ -1,6 +1,6 @@
 <template>
   <div class="tab-bar">
-    <tab-bar-item v-for="item in itemList" :path="item.path" :item="item"></tab-bar-item>
+    <tab-bar-item v-for="(item, index) in itemList" :key="index" :path="item.path" :item="item"></tab-bar-item>
   </div>
 </template>
 

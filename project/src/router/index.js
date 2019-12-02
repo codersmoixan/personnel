@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 // 导入功能组件
-const Home = () => import('views/home/Home')
+// const Home = () => import('views/home/Home')
 const Personnel = () => import('views/personnel/Personnel')
 const UpdateLog = () => import('views/updateLog/UpdateLog')
 

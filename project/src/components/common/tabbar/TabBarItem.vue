@@ -1,6 +1,6 @@
 <template>
   <div class="nav-item" @click="itemClick" :style="itemFontColor">
-    <span>>&nbsp&nbsp{{item.name}}</span>
+    <span>>&nbsp;&nbsp;{{item.name}}</span>
   </div>
 </template>
 
