@@ -20,7 +20,7 @@
           },
           {
             name: '超级管理',
-            path: '1'
+            path: '/supervise'
           },
           {
             name: '财务管理',
@@ -28,15 +28,15 @@
           },
           {
             name: '技术管理',
-            path: '3'
+            path: '/technical'
           },
           {
             name: '销售管理',
-            path: '4'
+            path: '/sale'
           },
           {
             name: '统计分析',
-            path: ''
+            path: '/statistics'
           }
         ]
       }
