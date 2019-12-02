@@ -21,7 +21,12 @@ const router = new VueRouter({
     {
       path: '/updatelog',
       component: UpdateLog
+    },
+    {
+      path: '/finance',
+      component: () => import('views/finance/Finance')
     }
+    
   ],
   mode: 'history'
 })

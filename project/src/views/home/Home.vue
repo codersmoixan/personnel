@@ -24,7 +24,7 @@
           },
           {
             name: '财务管理',
-            path: '2'
+            path: '/finance'
           },
           {
             name: '技术管理',
