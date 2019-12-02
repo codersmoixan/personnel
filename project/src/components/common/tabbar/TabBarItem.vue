@@ -52,7 +52,4 @@
     cursor: pointer;
     background-color: #001529;
   }
-  .active {
-
-  }
 </style>

@@ -9,4 +9,4 @@ new Vue({
   router
 }).$mount('#app')
 
-console.log('zhanghuan')
+// console.log('zhanghuan')
