@@ -4,7 +4,7 @@ import VueRouter from 'vue-router'
 // 导入功能组件
 const Home = () => import('views/home/Home')
 const Personnel = () => import('views/personnel/Personnel')
-
+const UpdateLog = () => import('views/updateLog/UpdateLog')
 
 Vue.use(VueRouter)
 
@@ -12,17 +12,15 @@ const router = new VueRouter({
   routes: [
     {
       path: '',
-      redirect: '/home'
+      redirect: '/personnel'
     },
     {
-      path: '/home', // 首页下的子组件
-      component: Home,
-      children: [
-        {
-          path:'personnel',
-          component: Personnel
-        }
-      ]
+      path: '/personnel',
+      component: Personnel
+    },
+    {
+      path: '/updatelog',
+      component: UpdateLog
     }
   ],
   mode: 'history'
