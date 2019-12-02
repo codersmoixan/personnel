@@ -26,7 +26,6 @@ const router = new VueRouter({
       path: '/finance',
       component: () => import('views/finance/Finance')
     }
-    
   ],
   mode: 'history'
 })
