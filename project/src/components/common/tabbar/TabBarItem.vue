@@ -45,7 +45,7 @@
 <style scoped>
   .nav-item  {
     margin: 5px 0;
-    width: 200px;
+    width: 100%;
     height: 50px;
     text-align: center;
     line-height: 50px;

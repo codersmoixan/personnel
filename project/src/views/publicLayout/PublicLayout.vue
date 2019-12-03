@@ -1,7 +1,17 @@
 <template>
-<div class="home">
-  <main-tab-item :itemList="itemList" class="tab-bar"></main-tab-item>
-</div>
+  <el-container>
+    <el-aside width="200px">
+      <main-tab-item :itemList="itemList" class="tab-bar"></main-tab-item>
+    </el-aside>
+    <el-container>
+      <el-header>Header</el-header>
+      <el-main>
+        <div class="functional-module">
+          <router-view></router-view>
+        </div>
+      </el-main>
+    </el-container>
+  </el-container>
 </template>
 <script>
   import MainTabItem from 'components/content/MainTabItem'
@@ -52,8 +62,4 @@
   }
 </script>
 <style scoped>
-  .tab-bar {
-    width: 200px;
-    height: 100vh;
-  }
 </style>
