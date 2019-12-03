@@ -20,14 +20,15 @@
         background-color="#001529"
         text-color="#fff"
         active-text-color="#ffd04b"
-        v-for="(systems, systemsId) in systems" :key="systemsId">
-        <el-submenu :index="systems.systemsId">
+        :unique-opened="isUniqueOpened"
+        v-for="(systems, index) in systems" :key="index">
+        <el-submenu :index="'+index+1+'" class="aside-submenu">
           <template slot="title">
             <i class="el-icon-location"></i>
             <span>{{ systems.systemName }}</span>
           </template>
-          <el-menu-item-group v-for="(item, index) in systems.children" :key="index">
-            <el-menu-item>{{ item }}</el-menu-item>
+          <el-menu-item-group>
+            <el-menu-item class="aside-item" v-for="(item, index) in systems.children" :key="index">{{ item }}</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
       </el-menu>
@@ -41,6 +42,7 @@ export default {
   data() {
     return {
       userName: 'Jack',
+      isUniqueOpened: true,
       systems: [
         {
           systemName: '超级管理系统',
@@ -118,17 +120,17 @@ export default {
     }
   },
   methods: {
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
+    handleOpen() {
+      // console.log(key, keyPath);
     },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
+    handleClose() {
+      // console.log(key, keyPath);
     }
   }
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 .aside-container {
   position: absolute;
   left: 0;
@@ -160,8 +162,19 @@ export default {
   }
   .el-col {
     width: 100%;
+    .el-submenu.aside-submenu {
+      &:hover {
+        background-color: rgb(78,84,101)!important;
+      }
+    }
     .el-menu-item-group__title {
-      padding: 0!important;
+      padding: 0;
+    }
+    .el-menu-item.aside-item {
+      background-color: rgb(0,15,29)!important;
+      &:hover {
+        background-color: rgb(78,84,101)!important;
+      }
     }
   }
 }
