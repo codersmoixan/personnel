@@ -1,19 +1,17 @@
 <template>
   <div id="app">
-    <home></home>
-    <div class="functional-module">
-      <router-view></router-view>
-    </div>
+    <PublicLayout></PublicLayout>
   </div>
 </template>
 
 <script>
-import Home from 'views/home/Home'
+// import Home from 'views/home/Home'
+import PublicLayout from 'views/publicLayout/PublicLayout'
 
 export default {
   name: 'app',
   components: {
-    Home
+    PublicLayout
   }
 }
 </script>
@@ -22,6 +20,7 @@ export default {
   @import "assets/css/base.css";
   #app {
     display: flex;
+    background-color: #fff;
   }
   .tab-bar {
     width: 200px;
