@@ -28,4 +28,3 @@ new Vue({
   router
 }).$mount('#app')
 
-// console.log('zhanghuan')

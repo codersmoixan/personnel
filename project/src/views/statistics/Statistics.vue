@@ -1,6 +1,6 @@
 <template>
   <div class="statistics">
-    <h2>统计分析</h2>
+    <h2 >统计分析</h2>
   </div>
 </template>
 
