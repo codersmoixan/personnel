@@ -32,6 +32,10 @@ Vue.component(menu.name, menu)
 Vue.component(menuItemGroup.name, menuItemGroup)
 Vue.component(menuItem.name, menuItem)
 
+// 引入 Echarts（暂时还没用上
+/* import echarts from 'echarts'
+Vue.prototype.$echarts = echarts */
+
 Vue.config.productionTip = false
 
 new Vue({

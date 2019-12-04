@@ -24,11 +24,11 @@
         v-for="(systems, index) in systems" :key="index">
         <el-submenu :index="'+index+1+'" class="aside-submenu">
           <template slot="title">
-            <i class="el-icon-location"></i>
+            <i :class="systems.iconClassName"></i>
             <span>{{ systems.systemName }}</span>
           </template>
           <el-menu-item-group>
-            <el-menu-item class="aside-item" v-for="(item, index) in systems.children" :key="index">{{ item }}</el-menu-item>
+            <el-menu-item class="aside-item" v-for="(item, index) in systems.children" :key="index" @click="$router.push(item.path)"><i class="el-icon-arrow-right"></i>{{ item.name }}</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
       </el-menu>
@@ -47,73 +47,218 @@ export default {
         {
           systemName: '超级管理系统',
           systemsId: 1,
+          iconClassName: 'el-icon-edit-outline',
           children: [
-            '子项目一',
-            '子项目二',
-            '子项目三',
-            '子项目四',
-            '子项目五',
-            '子项目六',
+            {
+              name: '子项目一',
+              path: '/'
+            },
+            {
+              name: '子项目二',
+              path: '/'
+            },
+            {
+              name: '子项目三',
+              path: '/'
+            },
+            {
+              name: '子项目四',
+              path: '/'
+            },
+            {
+              name: '子项目五',
+              path: '/'
+            },
+            {
+              name: '子项目六',
+              path: '/'
+            }
           ]
         },
         {
           systemName: '财务管理系统',
           systemsId: 2,
+          iconClassName: 'el-icon-news',
           children: [
-            '公司账目列表',
-            '固定资产管理',
-            '报销管理',
-            '福利保险管理',
-            '工资管理',
-            '组管理'
+            {
+              name: '公司账目列表',
+              path: '/finance/company'
+            },
+            {
+              name: '固定资产管理',
+              path: '/finance/fixed-assets'
+            },
+            {
+              name: '报销管理',
+              path: '/finance/apply'
+            },
+            {
+              name: '福利保险管理',
+              path: '/finance/welfare'
+            },
+            {
+              name: '工资管理',
+              path: '/finance/wage'
+            },
+            {
+              name: '组管理',
+              path: '/finance/group'
+            }
           ]
         },
         {
           systemName: '人事管理系统',
           systemsId: 3,
+          iconClassName: 'el-icon-service',
           children: [
-            '子项目一',
-            '子项目二',
-            '子项目三',
-            '子项目四',
-            '子项目五',
-            '子项目六',
+            {
+              name: '子项目一',
+              path: '/'
+            },
+            {
+              name: '子项目二',
+              path: '/'
+            },
+            {
+              name: '子项目三',
+              path: '/'
+            },
+            {
+              name: '子项目四',
+              path: '/'
+            },
+            {
+              name: '子项目五',
+              path: '/'
+            },
+            {
+              name: '子项目六',
+              path: '/'
+            }
           ]
         },
         {
           systemName: '技术管理系统',
           systemsId: 4,
+          iconClassName: 'el-icon-edit',
           children: [
-            '子项目一',
-            '子项目二',
-            '子项目三',
-            '子项目四',
-            '子项目五',
-            '子项目六',
+            {
+              name: '子项目一',
+              path: '/'
+            },
+            {
+              name: '子项目二',
+              path: '/'
+            },
+            {
+              name: '子项目三',
+              path: '/'
+            },
+            {
+              name: '子项目四',
+              path: '/'
+            },
+            {
+              name: '子项目五',
+              path: '/'
+            },
+            {
+              name: '子项目六',
+              path: '/'
+            }
           ]
         },
         {
           systemName: '销售管理系统',
           systemsId: 5,
+          iconClassName: 'el-icon-edit',
           children: [
-            '子项目一',
-            '子项目二',
-            '子项目三',
-            '子项目四',
-            '子项目五',
-            '子项目六',
+            {
+              name: '子项目一',
+              path: '/'
+            },
+            {
+              name: '子项目二',
+              path: '/'
+            },
+            {
+              name: '子项目三',
+              path: '/'
+            },
+            {
+              name: '子项目四',
+              path: '/'
+            },
+            {
+              name: '子项目五',
+              path: '/'
+            },
+            {
+              name: '子项目六',
+              path: '/'
+            }
           ]
         },
         {
           systemName: '统计管理系统',
           systemsId: 6,
+          iconClassName: 'el-icon-edit',
           children: [
-            '子项目一',
-            '子项目二',
-            '子项目三',
-            '子项目四',
-            '子项目五',
-            '子项目六',
+            {
+              name: '子项目一',
+              path: '/'
+            },
+            {
+              name: '子项目二',
+              path: '/'
+            },
+            {
+              name: '子项目三',
+              path: '/'
+            },
+            {
+              name: '子项目四',
+              path: '/'
+            },
+            {
+              name: '子项目五',
+              path: '/'
+            },
+            {
+              name: '子项目六',
+              path: '/'
+            }
+          ]
+        },
+        {
+          systemName: '日志管理系统',
+          systemsId: 7,
+          iconClassName: 'el-icon-edit',
+          children: [
+            {
+              name: '子项目一',
+              path: '/'
+            },
+            {
+              name: '子项目二',
+              path: '/'
+            },
+            {
+              name: '子项目三',
+              path: '/'
+            },
+            {
+              name: '子项目四',
+              path: '/'
+            },
+            {
+              name: '子项目五',
+              path: '/'
+            },
+            {
+              name: '子项目六',
+              path: '/'
+            }
           ]
         }
       ]
@@ -125,7 +270,7 @@ export default {
     },
     handleClose() {
       // console.log(key, keyPath);
-    }
+    },
   }
 }
 </script>
@@ -136,7 +281,7 @@ export default {
   left: 0;
   top: 0;
   width: 220px;
-  height: 200px;
+  height: 100vh;
   background-color: #001529;
   color: #333;
   text-align: center;
@@ -172,8 +317,16 @@ export default {
     }
     .el-menu-item.aside-item {
       background-color: rgb(0,15,29)!important;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      padding-left: 60px!important;
       &:hover {
         background-color: rgb(78,84,101)!important;
+      }
+      i {
+        color: #fff;
+        font-size: 12px;
       }
     }
   }

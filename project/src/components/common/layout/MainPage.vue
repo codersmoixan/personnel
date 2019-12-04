@@ -1,6 +1,6 @@
 <template>
   <div class="mainPage-container">
-    <el-button>main</el-button>
+    <!-- <el-button>main</el-button> -->
     <router-view></router-view>
   </div>
 </template>
@@ -14,7 +14,7 @@ export default {
 <style lang="less" scoped>
 .mainPage-container {
   width: 100%;
-  background-color: #001529;
+  background-color: rgb(248, 248, 248);
   position: absolute;
   left: 0;
   top: 0;

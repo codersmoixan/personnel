@@ -5,7 +5,7 @@ import VueRouter from 'vue-router'
 // const Home = () => import('views/publicLayout/Home')
 const Personnel = () => import('views/personnel/Personnel')
 const UpdateLog = () => import('views/updateLog/UpdateLog')
-const Finance = () => import('views/finance/Finance')
+// const Finance = () => import('views/finance/Finance')
 const Sale = () => import('views/sale/Sale')
 const Supervise = () => import('views/supervise/Supervise')
 const Technical = () => import('views/technical/Technical')
@@ -27,9 +27,36 @@ const router = new VueRouter({
       path: '/updatelog',
       component: UpdateLog
     },
+    //  财务管理系统 路由
     {
       path: '/finance',
-      component: Finance
+      component: () => import('views/finance/Finance'),
+      children: [
+        {
+          path: 'company',
+          component: () => import('views/finance/companyAccounts/CompanyAccounts')
+        },
+        {
+          path: 'fixed-assets',
+          component: () => import('views/finance/fixedAssets/FixedAssets')
+        },
+        {
+          path: 'apply',
+          component: () => import('views/finance/apply/Apply')
+        },
+        {
+          path: 'welfare',
+          component: () => import('views/finance/welfare/Welfare')
+        },
+        {
+          path: 'wage',
+          component: () => import('views/finance/wage/Wage')
+        },
+        {
+          path: 'group',
+          component: () => import('views/finance/group/Group')
+        }
+      ]
     },
     {
       path: '/sale',

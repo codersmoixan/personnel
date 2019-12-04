@@ -16,7 +16,7 @@ export default {
   width: 100%;
   height: 50px;
   line-height: 50px;
-  background-color: #ccc;
+  background-color: #fff;
   position: absolute;
   left: 0;
   top: 0;
