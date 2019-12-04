@@ -16,10 +16,10 @@
         this.$emit('addStaff')
       },
       removeStaff() {
-        console.log('removeStaff')
+        // console.log('removeStaff')
       },
       batchRemove() {
-        console.log('batchRemove')
+        // console.log('batchRemove')
       }
     }
   }
