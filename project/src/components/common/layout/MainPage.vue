@@ -18,8 +18,8 @@ export default {
   position: absolute;
   left: 0;
   top: 0;
-  padding-left: 220px;
   margin-top: 50px;
   z-index: -1;
+  padding: 10px 10px 10px 230px;
 }
 </style>
