@@ -20,9 +20,18 @@ import {
   InputNumber,
   Form,
   FormItem,
-  Upload
+  Upload,
+  Col,
+  submenu,
+  menu,
+  menuItemGroup,
+  menuItem,
+  table,
+  tableColumn,
+  Message,
+  MessageBox,
+  Card
 } from 'element-ui'
-
 
 Vue.use(Button)
 Vue.use(Select)
@@ -42,6 +51,23 @@ Vue.use(FormItem)
 Vue.use(Upload)
 
 
+Vue.use(Card)
+
+// Vue.component(Button.name, Button)
+Vue.component(Col.name, Col)
+Vue.component(submenu.name, submenu)
+Vue.component(menu.name, menu)
+Vue.component(menuItemGroup.name, menuItemGroup)
+Vue.component(menuItem.name, menuItem)
+Vue.component(tableColumn.name, tableColumn)
+Vue.component(table.name, table)
+
+Vue.prototype.$message = Message
+Vue.prototype.$confirm = MessageBox
+
+// 引入 Echarts（暂时还没用上
+/* import echarts from 'echarts'
+Vue.prototype.$echarts = echarts */
 
 Vue.config.productionTip = false
 Vue.prototype.$bus = new Vue()
@@ -52,4 +78,3 @@ new Vue({
   store
 }).$mount('#app')
 
-// console.log('zhanghuan')

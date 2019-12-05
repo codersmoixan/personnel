@@ -1,7 +1,8 @@
 <template>
   <div class="update-log">
 
-    <h2>财务管理11</h2>
+    <!-- <h2>财务管理父页面</h2> -->
+    <router-view></router-view>
 
   </div>
 </template>
