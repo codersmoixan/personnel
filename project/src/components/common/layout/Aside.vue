@@ -143,28 +143,36 @@ export default {
           iconClassName: 'el-icon-edit',
           children: [
             {
-              name: '子项目一',
-              path: '/'
+              name: '项目列表',
+              path: '/technical/ItemsList',
             },
             {
-              name: '子项目二',
-              path: '/'
+              name: '需求列表',
+              path: '/technical/DemandList'
             },
             {
-              name: '子项目三',
-              path: '/'
+              name: '销售部需求列表',
+              path: '/technical/SalesDepartmentList'
             },
             {
-              name: '子项目四',
-              path: '/'
+              name: '组管理',
+              path: '/technical/Group'
             },
             {
-              name: '子项目五',
-              path: '/'
+              name: '产品列表',
+              path: '/technical/ProductList'
             },
             {
-              name: '子项目六',
-              path: '/'
+              name: '会议列表',
+              path: '/technical/MeetingList'
+            },
+            {
+              name: '知识分享',
+              path: '/technical/KnowledgeSharing'
+            },
+            {
+              name: '项目阶段列表',
+              path: '/technical/ProjectPhaseList'
             }
           ]
         },

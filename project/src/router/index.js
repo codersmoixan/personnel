@@ -68,7 +68,41 @@ const router = new VueRouter({
     },
     {
       path: '/technical',
-      component: Technical
+      component: Technical,
+      children:[
+      {
+        path:'ProjectPhaseList',
+        component:()=>import('views/technical/projectPhaseList/ProjectPhaseList')
+      },
+      {
+        path:'ProductList',
+        component:()=>import('views/technical/productList/ProductList')
+      },   
+      {
+        path:'MeetingList',
+        component:()=>import('views/technical/meetingList/MeetingList')
+      },
+      {
+        path:'KnowledgeSharing',
+        component:()=>import('views/technical/knowledgeSharing/KnowledgeSharing')
+      },
+      {
+        path:'ItemsList',
+        component:()=>import('views/technical/itemsList/ItemsList'),
+      },
+      {
+        path:'Group',
+        component:()=>import('views/technical/group/Group')
+      },
+      {
+        path:'DemandList',
+        component:()=>import('views/technical/demandList/DemandList')
+      },
+      {
+        path:'SalesDepartmentList',
+        component:()=>import('views/technical/salesDepartmentList/SalesDepartmentList')
+      }
+    ]
     },
     {
       path: '/statistics',

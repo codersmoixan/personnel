@@ -18,7 +18,8 @@ import {
   table,
   tableColumn,
   Message,
-  MessageBox
+  MessageBox,
+  Card
 } from 'element-ui'
 
 Vue.use(Button)
@@ -28,6 +29,7 @@ Vue.use(Header)
 Vue.use(Aside)
 Vue.use(Main)
 Vue.use(Row)
+Vue.use(Card)
 
 Vue.component(Button.name, Button)
 Vue.component(Col.name, Col)
