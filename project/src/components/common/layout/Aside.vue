@@ -324,6 +324,9 @@ export default {
       &:hover {
         background-color: rgb(78,84,101)!important;
       }
+      &:active {
+        background-color: rgb(34, 86, 231)!important;
+      }
       i {
         color: #fff;
         font-size: 12px;

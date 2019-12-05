@@ -14,7 +14,11 @@ import {
   submenu,
   menu,
   menuItemGroup,
-  menuItem
+  menuItem,
+  table,
+  tableColumn,
+  Message,
+  MessageBox
 } from 'element-ui'
 
 Vue.use(Button)
@@ -31,6 +35,11 @@ Vue.component(submenu.name, submenu)
 Vue.component(menu.name, menu)
 Vue.component(menuItemGroup.name, menuItemGroup)
 Vue.component(menuItem.name, menuItem)
+Vue.component(tableColumn.name, tableColumn)
+Vue.component(table.name, table)
+
+Vue.prototype.$message = Message
+Vue.prototype.$confirm = MessageBox
 
 // 引入 Echarts（暂时还没用上
 /* import echarts from 'echarts'
