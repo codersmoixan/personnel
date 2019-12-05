@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 
 // 导入功能组件
 // const Home = () => import('views/publicLayout/Home')
-const Personnel = () => import('views/personnel/Personnel')
+const Personnel = () => import('views/personnel/personnelList/Personnel')
 const UpdateLog = () => import('views/updateLog/UpdateLog')
 const Finance = () => import('views/finance/Finance')
 const Sale = () => import('views/sale/Sale')
