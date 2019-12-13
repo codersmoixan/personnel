@@ -1,4 +1,5 @@
 @import "./normalize.css";
+@import "./zj_base.css";
 
 :root {
   --color-text: #fff;

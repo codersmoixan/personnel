@@ -95,7 +95,7 @@
                 <div class="tab-item"><label for="userpost">
                   <table>
                     <tr class="child-item">
-                      <td>面试职位：</td>
+                      <td>职位：</td>
                       <td>
                         <el-input
                           placeholder="请输入内容"
@@ -300,6 +300,8 @@
 <script>
   import PopupHeader from 'components/content/PopupHeader'
 
+  import {httpPost, postform} from 'network/quest'
+
   export default {
     name: "AddPersonnel",
     data() {
@@ -344,7 +346,7 @@
         userPost: '',
         userEvaluate: '',
         fileList: [],
-        personnelMsg: {}
+        personnelStaff: {}
       }
     },
     beforeCreate() {
@@ -395,20 +397,59 @@
         })
       },
       clickSubmit() { // 提交信息
-        this.personnelMsg.id = parseInt(Math.random() * 10000000000000)
-        this.personnelMsg.name = this.userName
-        this.personnelMsg.sex = this.userRadio === '1' ? '男' : '女'
-        this.personnelMsg.age = this.userAge
-        this.personnelMsg.role = false
-        this.personnelMsg.email = 'y.ykqhwk@rgpwubyg.ye'
-        this.personnelMsg.department = '销售部'
-        this.personnelMsg.native = '江苏省'
-        this.personnelMsg.entryTime = new Date()
-        this.personnelMsg.state = '未在职'
 
-        this.$store.commit('addData', this.personnelMsg)
-        this.closeClick()
-        console.log(this.$store.state.list)
+        if(this.sex === '男') {
+          this.sex = 1
+        }else if(this.sex === '女') {
+          this.sex = 0
+        }
+        // 添加员工信息
+        this.personnelStaff.age = this.userAge
+        this.personnelStaff.city = this.userCity
+        this.personnelStaff.contactInformation = this.userPhone
+        this.personnelStaff.departmentId = ''
+        this.personnelStaff.detailedAddress = this.userAdress
+        this.personnelStaff.education = ''
+        this.personnelStaff.enclosure = ''
+        this.personnelStaff.entryDate = ''
+        this.personnelStaff.entryPosition = this.userPost
+        this.personnelStaff.gender = this.sex
+        this.personnelStaff.graduatedSchool = this.userSchool
+        this.personnelStaff.id = parseInt(Math.random() * 10000)
+        this.personnelStaff.identityCardNumber = this.useridcard
+        this.personnelStaff.interviewResults = this.userEvaluate
+        this.personnelStaff.name = this.userName
+        this.personnelStaff.nation = this.userNation
+        this.personnelStaff.nationality = this.userusErnationality
+        this.personnelStaff.otherSubsidies = ''
+        this.personnelStaff.password = ''
+        this.personnelStaff.probationPeriod = this.userProbation
+        this.personnelStaff.role = ''
+        this.personnelStaff.status = 0
+        this.personnelStaff.workExperience = this.userContent
+
+        this.$confirm('确认提交, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          httpPost('/personnel/staff/add', this.personnelStaff).then(res => {
+            console.log(res);
+          }).catch(err => {
+            console.log(err);
+          })
+
+          this.$message({
+            type: 'success',
+            message: '提交成功!'
+          });
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消提交'
+          });
+        });
+        this.isShow = false
       }
     },
     components: {
@@ -419,15 +460,6 @@
 
 <style scoped lang="less">
   .cover {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100vh;
-    background: rgba(0, 0, 0, .2);
-    z-index: 99;
     .zj-add-person {
       position: absolute;
       left: 50%;

@@ -1,92 +1,114 @@
 <template>
   <div class="cover" v-show="checkClose">
     <div class="check-personnel">
-      <popup-header :isClose="checkClose">
-        <span slot="header-left">员工详细信息</span>
-      </popup-header>
+      <div class="title">
+        <span>员工详细信息</span>
+        <div class="close" @click="closeFlag">x</div>
+      </div>
       <div class="show-personnel-data">
-        <table>
-          <tr>
-            <td>姓名：</td>
-            <td>{{personnelData.name}}</td>
-          </tr>
-          <tr>
-            <td>性别：</td>
-            <td>{{personnelData.sex}}</td>
-          </tr>
-          <tr>
-            <td>年龄：</td>
-            <td>{{personnelData.age}}</td>
-          </tr>
-          <tr>
-            <td>毕业学校：</td>
-            <td>{{personnelData.school}}</td>
-          </tr>
-          <tr>
-            <td>国籍：</td>
-            <td>{{personnelData.nationality}}</td>
-          </tr>
-          <tr>
-            <td>籍贯：</td>
-            <td>{{personnelData.province}}</td>
-          </tr>
-          <tr>
-            <td>城市：</td>
-            <td>{{personnelData.city}}</td>
-          </tr>
-          <tr>
-            <td>详细地址：</td>
-            <td>{{personnelData.dress}}</td>
-          </tr>
-          <tr>
-            <td>民族：</td>
-            <td>{{personnelData.nation}}</td>
-          </tr>
-          <tr>
-            <td>身份证号码：</td>
-            <td>{{personnelData.IDCard}}</td>
-          </tr>
-          <tr>
-            <td>入职日期：</td>
-            <td>{{personnelData.entryTime}}</td>
-          </tr>
-          <tr>
-            <td>部门：</td>
-            <td>{{personnelData.department}}</td>
-          </tr>
-          <tr>
-            <td>实习时间（月）：</td>
-            <td>{{personnelData.probation}}个月</td>
-          </tr>
-          <tr>
-            <td>职位：</td>
-            <td>{{personnelData.roleTitle}}</td>
-          </tr>
-          <tr>
-            <td>邮箱：</td>
-            <td>{{personnelData.email}}</td>
-          </tr>
-          <tr>
-            <td>qq：</td>
-            <td>{{personnelData.qq}}</td>
-          </tr>
-          <tr>
-            <td>餐补：</td>
-            <td>{{personnelData.mealAllowance}}</td>
-          </tr>
-          <tr>
-            <td>车补：</td>
-            <td>{{personnelData.fareSubsidy}}</td>
-          </tr>
-          <tr>
-            <td>工作经历：</td>
-            <td>{{personnelData.workHistory}}</td>
-          </tr>
-          <tr>
-            <td>面试结果（领导的评价）：</td>
-            <td>{{personnelData.interviewResults}}</td>
-          </tr>
-        </table>
+        <el-form ref="form" :model="personnelData" label-width="150px">
+          <el-form-item label="姓名：">
+            <el-col :span="5">
+              <el-input :value="personnelData.name" disabled></el-input>
+            </el-col>
+          </el-form-item>
+          <el-form-item label="工号：">
+            <el-col :span="5">
+              <el-input :value="null" disabled></el-input>
+            </el-col>
+          </el-form-item>
+          <el-form-item label="年龄：">
+            <el-col :span="4">
+              <el-input :value="personnelData.age" disabled></el-input>
+            </el-col>
+          </el-form-item>
+          <el-form-item label="性别：">
+            <el-col :span="4">
+              <el-input :value="personnelData.gender ? '男' : '女'" disabled></el-input>
+            </el-col>
+          </el-form-item>
+          <el-form-item label="学历：">
+            <el-col :span="5">
+              <el-input :value="personnelData.education" disabled></el-input>
+            </el-col>
+          </el-form-item>
+          <el-form-item label="毕业院校：">
+            <el-col :span="10">
+              <el-input :value="personnelData.graduatedSchool" disabled></el-input>
+            </el-col>
+          </el-form-item>
+          <el-form-item label="民族：">
+            <el-col :span="10">
+              <el-input :value="personnelData.nation" disabled></el-input>
+            </el-col>
+          </el-form-item>
+          <el-form-item label="国籍：">
+            <el-col :span="10">
+              <el-input :value="personnelData.nationality" disabled></el-input>
+            </el-col>
+          </el-form-item>
+          <el-form-item label="户籍：">
+            <el-col :span="10">
+              <el-input :value="personnelData.province" disabled></el-input>
+            </el-col>
+          </el-form-item>
+          <el-form-item label="市：">
+            <el-col :span="10">
+              <el-input :value="personnelData.city" disabled></el-input>
+            </el-col>
+          </el-form-item>
+          <el-form-item label="详细地址：">
+            <el-col :span="10">
+              <el-input :value="personnelData.detailedAddress" disabled></el-input>
+            </el-col>
+          </el-form-item>
+          <el-form-item label="身份证号码：">
+            <el-col :span="10">
+              <el-input :value="personnelData.identityCardNumber" disabled></el-input>
+            </el-col>
+          </el-form-item>
+          <el-form-item label="试用期：">
+            <el-col :span="10">
+              <el-input :value="personnelData.probationPeriod" disabled></el-input>
+            </el-col>
+          </el-form-item>
+          <el-form-item label="职位：">
+            <el-col :span="10">
+              <el-input :value="personnelData.entryPosition" disabled></el-input>
+            </el-col>
+          </el-form-item>
+          <el-form-item label="公司担任角色：">
+            <el-col :span="10">
+              <el-input :value="personnelData.role" disabled></el-input>
+            </el-col>
+          </el-form-item>
+          <el-form-item label="入职日期：">
+            <el-col :span="10">
+              <el-input :value="personnelData.entryDate" disabled></el-input>
+            </el-col>
+          </el-form-item>
+          <el-form-item label="其他补贴：">
+            <el-col :span="10">
+              <el-input :value="personnelData.otherSubsidies" disabled></el-input>
+            </el-col>
+          </el-form-item>
+          <el-form-item label="是否在职：">
+            <el-col :span="10">
+              <el-input :value="personnelData.status ? '在职' : '离职'" disabled></el-input>
+            </el-col>
+          </el-form-item>
+          <el-form-item label="联系方式：">
+            <el-col :span="10">
+              <el-input :value="personnelData.contactInformation" disabled></el-input>
+            </el-col>
+          </el-form-item>
+          <el-form-item label="工作经历：">
+            <el-input type="textarea" v-model="personnelData.workExperience" :rows="8" disabled></el-input>
+          </el-form-item>
+          <el-form-item label="面试结果：">
+            <el-input type="textarea" v-model="personnelData.interviewResults" :rows="8" disabled></el-input>
+          </el-form-item>
+        </el-form>
       </div>
     </div>
   </div>
@@ -101,7 +123,7 @@
       return {
         checkClose: false,
         personnelId: 0,
-        personnelData: {}
+        personnelData: {},
       }
     },
     mounted() {
@@ -111,24 +133,16 @@
       getPersonnelData() {
         this.$bus.$on('zj_checkData', v => { // 获取开启弹窗开关 当前员工id
           this.checkClose = v.checkClose
-          this.personnelId = v.checkListId
-
-          this.getPersonId() // 获取当前员工信息
+          this.personnelData = v.personnelData
+          console.log(this.personnelData)
         });
 
         this.$bus.$on('zj_offFlag', v => { // 获取关闭弹窗开关
           this.checkClose = v
         })
       },
-      getPersonId() {
-        let personnelList = this.$store.state.list.list
-        for(let item in personnelList) {
-          // 判断传进来的id 获取员工的详细信息
-          if(this.personnelId === personnelList[item].id) {
-            this.personnelData = personnelList[item]
-            console.log(this.personnelData)
-          }
-        }
+      closeFlag() {
+        this.checkClose = false
       }
 
     },
@@ -140,15 +154,6 @@
 
 <style scoped lang="less">
   .cover {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100vh;
-    background: rgba(0, 0, 0, .2);
-    z-index: 99;
     .check-personnel {
       position: absolute;
       top: 50%;
@@ -156,12 +161,28 @@
       transform: translate3d(-50%, -50%, 0);
       width: 900px;
       height: 800px;
+      overflow: hidden;
       border: 1px solid #ccc;
       background-color: #fff;
       border-radius: 5px;
       box-sizing: border-box;
+
+      .title {
+        position: relative;
+        padding-left: 20px;
+        width: 100%;
+        height: 50px;
+        background: #3a8ee6;
+        font-size: 18px;
+        line-height: 50px;
+
+      }
+
       .show-personnel-data {
         padding: 20px;
+        width: 100%;
+        height: 750px;
+        overflow: auto;
         color: #000;
       }
     }

@@ -1,8 +1,8 @@
 <template>
   <div class="person-btn">
     <el-row>
-      <el-button type="primary" @click="addStaff">增加员工信息</el-button>
-      <el-button type="danger" @click="batchRemove">批量删除</el-button>
+      <el-button type="primary" @click="addStaff" size="small">增加员工信息</el-button>
+      <el-button type="danger" @click="batchRemove" size="small">批量删除</el-button>
     </el-row>
   </div>
 </template>

@@ -22,6 +22,9 @@ export default {
 </script>
 
 <style scoped lang="less">
+  .mainPage-container {
+    /*padding: 10px 10px 10px 220px;*/
+  }
   .public-layout-container {
     position: relative;
     width: 100%;

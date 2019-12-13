@@ -30,7 +30,16 @@ import {
   tableColumn,
   Message,
   MessageBox,
-  Card
+  Card,
+  Tabs,
+  TabPane,
+  DatePicker,
+  TimePicker,
+  Switch,
+  Checkbox,
+  CheckboxGroup,
+  RadioGroup,
+  Pagination
 } from 'element-ui'
 
 Vue.use(Button)
@@ -49,6 +58,16 @@ Vue.use(InputNumber)
 Vue.use(Form)
 Vue.use(FormItem)
 Vue.use(Upload)
+Vue.use(Tabs)
+Vue.use(TabPane)
+Vue.use(DatePicker)
+Vue.use(TimePicker)
+Vue.use(Switch)
+Vue.use(Checkbox)
+Vue.use(CheckboxGroup)
+Vue.use(RadioGroup)
+Vue.use(Pagination)
+
 
 
 Vue.use(Card)

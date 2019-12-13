@@ -28,7 +28,7 @@
             <span>{{ systems.systemName }}</span>
           </template>
           <el-menu-item-group>
-            <el-menu-item class="aside-item" v-for="(item, index) in systems.children" :key="index" @click="$router.push(item.path)"><i class="el-icon-arrow-right"></i>{{ item.name }}</el-menu-item>
+            <el-menu-item class="aside-item" v-for="(item, index) in systems.children" :key="index" @click="item.path !== $route.path &&$router.push(item.path)" ref="aaa"><i class="el-icon-arrow-right"></i>{{ item.name }}</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
       </el-menu>
@@ -45,68 +45,6 @@ export default {
       isUniqueOpened: true,
       systems: [
         {
-          systemName: '超级管理系统',
-          systemsId: 1,
-          iconClassName: 'el-icon-edit-outline',
-          children: [
-            {
-              name: '子项目一',
-              path: '/'
-            },
-            {
-              name: '子项目二',
-              path: '/'
-            },
-            {
-              name: '子项目三',
-              path: '/'
-            },
-            {
-              name: '子项目四',
-              path: '/'
-            },
-            {
-              name: '子项目五',
-              path: '/'
-            },
-            {
-              name: '子项目六',
-              path: '/'
-            }
-          ]
-        },
-        {
-          systemName: '财务管理系统',
-          systemsId: 2,
-          iconClassName: 'el-icon-news',
-          children: [
-            {
-              name: '公司账目列表',
-              path: '/finance/company'
-            },
-            {
-              name: '固定资产管理',
-              path: '/finance/fixed-assets'
-            },
-            {
-              name: '报销管理',
-              path: '/finance/apply'
-            },
-            {
-              name: '福利保险管理',
-              path: '/finance/welfare'
-            },
-            {
-              name: '工资管理',
-              path: '/finance/wage'
-            },
-            {
-              name: '组管理',
-              path: '/finance/group'
-            }
-          ]
-        },
-        {
           systemName: '人事管理系统',
           systemsId: 3,
           iconClassName: 'el-icon-service',
@@ -117,19 +55,19 @@ export default {
             },
             {
               name: '考勤管理',
-              path: '/'
+              path: '/personnel/record'
             },
             {
               name: '请假管理',
-              path: '/'
+              path: '/personnel/leave'
             },
             {
               name: '招聘计划',
-              path: '/'
+              path: '/personnel/recruit'
             },
             {
               name: '招聘管理',
-              path: '/'
+              path: '/personnel/recruitmanage'
             },
             {
               name: '培训管理',
@@ -144,143 +82,14 @@ export default {
               path: '/'
             }
           ]
-        },
-        {
-          systemName: '技术管理系统',
-          systemsId: 4,
-          iconClassName: 'el-icon-edit',
-          children: [
-            {
-              name: '项目列表',
-              path: '/technical/ItemsList',
-            },
-            {
-              name: '需求列表',
-              path: '/technical/DemandList'
-            },
-            {
-              name: '销售部需求列表',
-              path: '/technical/SalesDepartmentList'
-            },
-            {
-              name: '组管理',
-              path: '/technical/Group'
-            },
-            {
-              name: '产品列表',
-              path: '/technical/ProductList'
-            },
-            {
-              name: '会议列表',
-              path: '/technical/MeetingList'
-            },
-            {
-              name: '知识分享',
-              path: '/technical/KnowledgeSharing'
-            },
-            {
-              name: '项目阶段列表',
-              path: '/technical/ProjectPhaseList'
-            }
-          ]
-        },
-        {
-          systemName: '销售管理系统',
-          systemsId: 5,
-          iconClassName: 'el-icon-edit',
-          children: [
-            {
-              name: '子项目一',
-              path: '/'
-            },
-            {
-              name: '子项目二',
-              path: '/'
-            },
-            {
-              name: '子项目三',
-              path: '/'
-            },
-            {
-              name: '子项目四',
-              path: '/'
-            },
-            {
-              name: '子项目五',
-              path: '/'
-            },
-            {
-              name: '子项目六',
-              path: '/'
-            }
-          ]
-        },
-        {
-          systemName: '统计管理系统',
-          systemsId: 6,
-          iconClassName: 'el-icon-edit',
-          children: [
-            {
-              name: '子项目一',
-              path: '/'
-            },
-            {
-              name: '子项目二',
-              path: '/'
-            },
-            {
-              name: '子项目三',
-              path: '/'
-            },
-            {
-              name: '子项目四',
-              path: '/'
-            },
-            {
-              name: '子项目五',
-              path: '/'
-            },
-            {
-              name: '子项目六',
-              path: '/'
-            }
-          ]
-        },
-        {
-          systemName: '日志管理系统',
-          systemsId: 7,
-          iconClassName: 'el-icon-edit',
-          children: [
-            {
-              name: '子项目一',
-              path: '/'
-            },
-            {
-              name: '子项目二',
-              path: '/'
-            },
-            {
-              name: '子项目三',
-              path: '/'
-            },
-            {
-              name: '子项目四',
-              path: '/'
-            },
-            {
-              name: '子项目五',
-              path: '/'
-            },
-            {
-              name: '子项目六',
-              path: '/'
-            }
-          ]
         }
       ]
     }
   },
   methods: {
+    click() {
+      console.log(this.$refs.aaa.item)
+    },
     handleOpen() {
       // console.log(key, keyPath);
     },
@@ -299,7 +108,6 @@ export default {
   width: 220px;
   height: 100vh;
   background-color: #001529;
-  color: #333;
   text-align: center;
   color: #fff;
   .user {
