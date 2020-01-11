@@ -1,35 +1,23 @@
 <template>
   <div id="app">
-    <PublicLayout></PublicLayout>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-// import Home from 'views/home/Home'
-import PublicLayout from 'views/publicLayout/PublicLayout'
-
-export default {
-  name: 'app',
-  components: {
-    PublicLayout
+  export default {
+    name: 'app',
+    components: {
+    }
   }
-}
 </script>
 
 <style>
   @import "assets/css/base.css";
+
   #app {
     display: flex;
-    background-color: #fff;
+    z-index: -999;
   }
-  .tab-bar {
-    width: 200px;
-    background-color: #001529 ;
-    color: #fff;
-  }
-  .functional-module {
-    flex: 1;
-    height: 100vh;
-    background-color: #eee;
-  }
+
 </style>

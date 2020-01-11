@@ -23,5 +23,8 @@
 <style scoped lang="less">
   .personnel {
     width: 100%;
+    height: 100%;
+    overflow: auto;
+    box-sizing: border-box;
   }
 </style>

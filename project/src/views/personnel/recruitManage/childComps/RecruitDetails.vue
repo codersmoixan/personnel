@@ -1,11 +1,11 @@
 <template>
-  <div class="details-cover">
-    <div class="details-view">
-      <div class="title">
+  <div class="details-cover cover">
+    <div class="details-view add-view">
+      <div class="title content-top">
         <span>简历详细信息</span>
         <div class="close" @click="closeFlag">x</div>
       </div>
-      <div class="details" v-if="Object.keys(tableItem) !== 0">
+      <div class="details ov-auto" v-if="Object.keys(tableItem) !== 0">
         <el-form ref="form" :model="tableItem" label-width="180px" label-position="left">
           <el-form-item label="姓名">
             <el-col :span="8">
@@ -124,22 +124,8 @@
 
 <style scoped lang="less">
     .details-cover {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      width: 100%;
-      height: 100vh;
-      background: rgba(0, 0, 0, .3);
-      z-index: 99;
 
       .details-view {
-        margin: 10px auto;
-        width: 1200px;
-        height: 800px;
-        background: #fff;
-        border-radius: 5px;
-        overflow: hidden;
         .title {
           height: 50px;
           background-color: #3a8ee6;
@@ -159,9 +145,6 @@
         }
 
         .details {
-          padding: 30px 20px;
-          overflow: auto;
-          height: 750px;
 
           .dress {
             .item {

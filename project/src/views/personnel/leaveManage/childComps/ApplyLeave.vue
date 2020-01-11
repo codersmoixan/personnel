@@ -1,7 +1,7 @@
 <template>
   <div class="cover" v-show="applyClose">
-    <div class="apply-leave-container">
-      <div class="apply-top">
+    <div class="apply-leave-container add-view">
+      <div class="apply-top content-top">
         <span>请假申请</span>
         <div class="close" @click="clickClose">x</div>
       </div>
@@ -29,18 +29,7 @@
 <style scoped lang="less">
   .cover {
     .apply-leave-container {
-      margin: 10px 0 0 50%;
-      transform: translateX(-50%);
-      width: 800px;
-      height: 800px;
-      overflow: hidden;
-      border-radius: 5px;
-      background-color: #fff;
       .apply-top {
-        position: relative;
-        width: 100%;
-        height: 50px;
-        background-color: #3a8ee6;
         span {
           padding-left: 20px;
           line-height: 50px;

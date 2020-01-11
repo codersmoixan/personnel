@@ -21,3 +21,12 @@ export function formatDate(date, fmt) {
 function padLeftZero (str) {
   return ('00' + str).substr(str.length);
 };
+
+/**数据拷贝*/
+export function dataCopy(oldData) {
+  let newData = {}
+  for(let item in oldData) {
+    newData[item] = oldData[item]
+  }
+  return newData
+}

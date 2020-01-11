@@ -1,268 +1,55 @@
 <template>
-  <div class="manage-container">
-    <el-table
-      :data="tableData"
-      border
-      style="width: 100%">
-      <el-table-column
-        type="selection"
-        width="55">
-      </el-table-column>
-      <el-table-column
-        prop="name"
-        label="姓名"
-        width="180">
-      </el-table-column>
-      <el-table-column
-        prop="sex"
-        label="性别"
-        width="180">
-      </el-table-column>
-      <el-table-column
-        prop="age"
-        label="年龄">
-      </el-table-column>
-      <el-table-column
-        prop="nHomeCity"
-        label="现居城市">
-      </el-table-column>
-      <el-table-column
-        prop="nHomeDress"
-        label="详细地址">
-      </el-table-column>
-      <el-table-column
-        prop="phone"
-        label="联系方式">
-      </el-table-column>
-      <el-table-column
-        prop="hopeSalary"
-        label="期望薪资">
-      </el-table-column>
-      <el-table-column
-        fixed="right"
-        label="操作"
-        width="100">
-        <template slot-scope="scope">
-          <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
+  <div class="manage-container pad-ten" v-loading="fullscreenLoading"
+       element-loading-background="rgba(255, 255, 255, 0.8)" element-loading-text="拼命加载中...">
+    <div class="handle-top clear-fix">
+      <div class="add">
+        <el-button type="primary" size="small" icon="el-icon-circle-plus" @click="addResume">添加</el-button>
+      </div>
+      <div class="search">
+        <personnel-search :queryParameter="queryParameter" @searchData="searchData"></personnel-search>
+      </div>
+    </div>
+    <recruit-list :resumeShowList="resumeShowList" @againRendering="againRendering"></recruit-list>
+    <div class="page">
+      <pagination :pageParams="pageParams" @getPageNum="getPageNum"></pagination>
+    </div>
     <recruit-details v-show="isShow" @isCloseFlag="isCloseFlag" :tableItem="tableItem"></recruit-details>
+    <add-recruit v-if="isAddShow" @isAddShowChange="isAddShowChange"></add-recruit>
   </div>
 </template>
 
 <script>
   import RecruitDetails from './childComps/RecruitDetails'
+  import RecruitList from './childComps/RecruitList'
+  import AddRecruit from './childComps/AddRecruit'
+
+  import PersonnelSearch from 'components/common/search/PersonnelSearch'
+  import Pagination from 'components/common/pagination/Pagination'
+
+  import {getResumeListAll, queryResumeById} from 'network/personnel'
 
   export default {
     name: "RecruitManage",
     data() {
       return {
-        tableData: [
-          {
-            id: '201912080001',
-            name: '王小虎',
-            sex: '男',
-            age: '20',
-            education: '本科',
-            school: '五道口职业技术学院',
-            nHomeProvince: '四川',
-            nHomeCity: '成都',
-            major: '计算机科学技术',
-            workYears: '3',
-            nHomeDress: '双流区商都路',
-            phone: '19983159553',
-            qq: '36758523',
-            recruitType: [],
-            hopeSalary: '15000',
-            workExperience: '网络系统方案（局域网和广域网）的设计和规划，解答用户的疑问，根 据用户需求提出最佳解决方案；Cisco、IBM网络产品的现场调试和系统维护',
-            selfEvaluation: '为人诚实守信，具备良好的心理素质和承受压力的能力，工作认真负责，作为技术人\n' +
-              '员，我的不足之处是缺乏管理方面的经验。'
-          },
-          {
-            id: '201912080002',
-            name: '王小虎',
-            sex: '男',
-            age: '20',
-            education: '本科',
-            school: '五道口职业技术学院',
-            nHomeProvince: '四川',
-            nHomeCity: '成都',
-            major: '计算机科学技术',
-            workYears: '3',
-            nHomeDress: '双流区商都路',
-            phone: '19983159553',
-            qq: '36758523',
-            recruitType: [],
-            hopeSalary: '15000',
-            workExperience: '网络系统方案（局域网和广域网）的设计和规划，解答用户的疑问，根 据用户需求提出最佳解决方案；Cisco、IBM网络产品的现场调试和系统维护',
-            selfEvaluation: '为人诚实守信，具备良好的心理素质和承受压力的能力，工作认真负责，作为技术人\n' +
-              '员，我的不足之处是缺乏管理方面的经验。'
-          },
-          {
-            id: '201912080003',
-            name: '王小虎',
-            sex: '男',
-            age: '20',
-            education: '本科',
-            school: '五道口职业技术学院',
-            nHomeProvince: '四川',
-            nHomeCity: '成都',
-            major: '计算机科学技术',
-            workYears: '3',
-            nHomeDress: '双流区商都路',
-            phone: '19983159553',
-            qq: '36758523',
-            recruitType: [],
-            hopeSalary: '15000',
-            workExperience: '网络系统方案（局域网和广域网）的设计和规划，解答用户的疑问，根 据用户需求提出最佳解决方案；Cisco、IBM网络产品的现场调试和系统维护',
-            selfEvaluation: '为人诚实守信，具备良好的心理素质和承受压力的能力，工作认真负责，作为技术人\n' +
-              '员，我的不足之处是缺乏管理方面的经验。'
-          },
-          {
-            id: '201912080004',
-            name: '王小虎',
-            sex: '男',
-            age: '20',
-            education: '本科',
-            school: '五道口职业技术学院',
-            nHomeProvince: '四川',
-            nHomeCity: '成都',
-            major: '计算机科学技术',
-            workYears: '3',
-            nHomeDress: '双流区商都路',
-            phone: '19983159553',
-            qq: '36758523',
-            recruitType: [],
-            hopeSalary: '15000',
-            workExperience: '网络系统方案（局域网和广域网）的设计和规划，解答用户的疑问，根 据用户需求提出最佳解决方案；Cisco、IBM网络产品的现场调试和系统维护',
-            selfEvaluation: '为人诚实守信，具备良好的心理素质和承受压力的能力，工作认真负责，作为技术人\n' +
-              '员，我的不足之处是缺乏管理方面的经验。'
-          },
-          {
-            id: '201912080005',
-            name: '王小虎',
-            sex: '男',
-            age: '20',
-            education: '本科',
-            school: '五道口职业技术学院',
-            nHomeProvince: '四川',
-            nHomeCity: '成都',
-            major: '计算机科学技术',
-            workYears: '3',
-            nHomeDress: '双流区商都路',
-            phone: '19983159553',
-            qq: '36758523',
-            recruitType: [],
-            hopeSalary: '15000',
-            workExperience: '网络系统方案（局域网和广域网）的设计和规划，解答用户的疑问，根 据用户需求提出最佳解决方案；Cisco、IBM网络产品的现场调试和系统维护',
-            selfEvaluation: '为人诚实守信，具备良好的心理素质和承受压力的能力，工作认真负责，作为技术人\n' +
-              '员，我的不足之处是缺乏管理方面的经验。'
-          },
-          {
-            id: '201912080006',
-            name: '王小虎',
-            sex: '男',
-            age: '20',
-            education: '本科',
-            school: '五道口职业技术学院',
-            nHomeProvince: '四川',
-            nHomeCity: '成都',
-            major: '计算机科学技术',
-            workYears: '3',
-            nHomeDress: '双流区商都路',
-            phone: '19983159553',
-            qq: '36758523',
-            recruitType: [],
-            hopeSalary: '15000',
-            workExperience: '网络系统方案（局域网和广域网）的设计和规划，解答用户的疑问，根 据用户需求提出最佳解决方案；Cisco、IBM网络产品的现场调试和系统维护',
-            selfEvaluation: '为人诚实守信，具备良好的心理素质和承受压力的能力，工作认真负责，作为技术人\n' +
-              '员，我的不足之处是缺乏管理方面的经验。'
-          },
-          {
-            id: '201912080007',
-            name: '王小虎',
-            sex: '男',
-            age: '20',
-            education: '本科',
-            school: '五道口职业技术学院',
-            nHomeProvince: '四川',
-            nHomeCity: '成都',
-            major: '计算机科学技术',
-            workYears: '3',
-            nHomeDress: '双流区商都路',
-            phone: '19983159553',
-            qq: '36758523',
-            recruitType: [],
-            hopeSalary: '15000',
-            workExperience: '网络系统方案（局域网和广域网）的设计和规划，解答用户的疑问，根 据用户需求提出最佳解决方案；Cisco、IBM网络产品的现场调试和系统维护',
-            selfEvaluation: '为人诚实守信，具备良好的心理素质和承受压力的能力，工作认真负责，作为技术人\n' +
-              '员，我的不足之处是缺乏管理方面的经验。'
-          },
-          {
-            id: '201912080008',
-            name: '王小虎',
-            sex: '男',
-            age: '20',
-            education: '本科',
-            school: '五道口职业技术学院',
-            nHomeProvince: '四川',
-            nHomeCity: '成都',
-            major: '计算机科学技术',
-            workYears: '3',
-            nHomeDress: '双流区商都路',
-            phone: '19983159553',
-            qq: '36758523',
-            recruitType: [],
-            hopeSalary: '15000',
-            workExperience: '网络系统方案（局域网和广域网）的设计和规划，解答用户的疑问，根 据用户需求提出最佳解决方案；Cisco、IBM网络产品的现场调试和系统维护',
-            selfEvaluation: '为人诚实守信，具备良好的心理素质和承受压力的能力，工作认真负责，作为技术人\n' +
-              '员，我的不足之处是缺乏管理方面的经验。'
-          },
-          {
-            id: '201912080009',
-            name: '王小虎',
-            sex: '男',
-            age: '20',
-            education: '本科',
-            school: '五道口职业技术学院',
-            nHomeProvince: '四川',
-            nHomeCity: '成都',
-            major: '计算机科学技术',
-            workYears: '3',
-            nHomeDress: '双流区商都路',
-            phone: '19983159553',
-            qq: '36758523',
-            recruitType: [],
-            hopeSalary: '15000',
-            workExperience: '网络系统方案（局域网和广域网）的设计和规划，解答用户的疑问，根 据用户需求提出最佳解决方案；Cisco、IBM网络产品的现场调试和系统维护',
-            selfEvaluation: '为人诚实守信，具备良好的心理素质和承受压力的能力，工作认真负责，作为技术人\n' +
-              '员，我的不足之处是缺乏管理方面的经验。'
-          },
-          {
-            id: '201912080010',
-            name: '王小虎',
-            sex: '男',
-            age: '20',
-            education: '本科',
-            school: '五道口职业技术学院',
-            nHomeProvince: '四川',
-            nHomeCity: '成都',
-            major: '计算机科学技术',
-            workYears: '3',
-            nHomeDress: '双流区商都路',
-            phone: '19983159553',
-            qq: '36758523',
-            recruitType: [],
-            hopeSalary: '15000',
-            workExperience: '网络系统方案（局域网和广域网）的设计和规划，解答用户的疑问，根 据用户需求提出最佳解决方案；Cisco、IBM网络产品的现场调试和系统维护',
-            selfEvaluation: '为人诚实守信，具备良好的心理素质和承受压力的能力，工作认真负责，作为技术人\n' +
-              '员，我的不足之处是缺乏管理方面的经验。'
-          }
-        ],
         isShow: false,
-        tableItem: {}
+        tableItem: {},
+        pageNum: 1,
+        pageSize: 10,
+        resumeShowList: [],
+        queryParameter: ['ID', 'NAME', 'PAGE', 'PAGESIZE'],
+        pageParams: {
+          pageNum: 1,
+          pageSize: [10],
+          total: 0
+        },
+        isCoverShow: false,
+        fullscreenLoading: false,
+        isAddShow: false
       }
+    },
+    created() {
+      this._getResumeListAll(this.pageNum, this.pageSize)
     },
     methods: {
       handleClick(data) {
@@ -271,10 +58,75 @@
       },
       isCloseFlag(data) {
         this.isShow = data
+      },
+      /**
+       * 1. 数据处理
+       * */
+      // 1. 获取全部数据
+      _getResumeListAll(num, size) {
+        console.log(this.$store.state.recruitPlanList)
+        this.fullscreenLoading = true
+        let data = {
+          page: num,
+          pageSize: size
+        }
+        // 发送请求
+        getResumeListAll(data).then(res => {
+          if (res.code === 200) {
+            this.resumeShowList = []
+            this.resumeShowList.push(...res.data.list)
+            this.pageParams.total = res.data.total
+            this.fullscreenLoading = false
+          }
+        }).catch(err => {
+          console.log(err);
+          // 提醒用户请求超时
+          this.$message.error('请求超时！！！')
+          this.fullscreenLoading = false
+        })
+      },
+      // 2. 重新渲染
+      againRendering() {
+        this._getResumeListAll(this.pageNum, this.pageSize)
+      },
+      // 3. 分页渲染
+      getPageNum(num) { // 获取页数
+        this.pageNum = num
+        this._getResumeListAll(this.pageNum, this.pageSize)
+      },
+      /**
+       * 2. 搜索数据
+       * */
+      searchData(data) {
+        console.log(data);
+        queryResumeById(data).then(res => {
+          // 判断是否查询成功
+          if (res.code === 200) {
+            this.resumeShowList = []
+            this.resumeShowList = res.data.list
+          }
+        }).catch(err => {
+          console.log(err);
+        })
+      },
+      /**
+       * 3. 添加简历
+       * */
+      // 1. 打开添加界面
+      addResume() {
+        this.isAddShow = true
+      },
+      // 2. 关闭添加界面
+      isAddShowChange(flag) {
+        this.isAddShow = flag
       }
     },
     components: {
-      RecruitDetails
+      RecruitDetails,
+      RecruitList,
+      PersonnelSearch,
+      Pagination,
+      AddRecruit
     }
   }
 </script>
@@ -282,5 +134,22 @@
 <style scoped lang="less">
   .manage-container {
     position: relative;
+    width: 100%;
+    height: calc(100vh - 50px);
+    overflow: auto;
+
+    .handle-top {
+      .add {
+        float: left;
+      }
+
+      .search {
+        float: right;
+      }
+    }
+
+    .page {
+      float: right;
+    }
   }
 </style>

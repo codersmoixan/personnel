@@ -88,6 +88,19 @@
 
 <style scoped lang="less">
   .leave-list {
-    width: 100%
+    width: 100%;
+
+    .el-table {
+      position: relative;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      -webkit-box-flex: 1;
+      -ms-flex: 1;
+      flex: 1;
+      width: 100%;
+      max-width: 100%;
+      font-size: 13px;
+      color: #606266;
+    }
   }
 </style>

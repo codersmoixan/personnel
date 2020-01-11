@@ -1,7 +1,10 @@
 <template>
   <div class="mainPage-container">
-    <!-- <el-button>main</el-button> -->
-    <router-view></router-view>
+    <el-scrollbar style="height: 100%;">
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
+    </el-scrollbar>
   </div>
 </template>
 
@@ -13,13 +16,14 @@ export default {
 
 <style lang="less" scoped>
 .mainPage-container {
-  width: 100%;
-  background-color: rgb(248, 248, 248);
   position: absolute;
   left: 0;
   top: 0;
+  padding-left: 220px;
+  width: 100%;
+  height: calc(100% - 50px);
+  background-color: rgb(248, 248, 248);
   margin-top: 50px;
-  z-index: -1;
-  padding: 10px 10px 10px 230px;
+  box-sizing: border-box;
 }
 </style>

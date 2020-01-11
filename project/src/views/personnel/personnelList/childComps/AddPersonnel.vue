@@ -1,557 +1,222 @@
 <template>
-  <div class="cover" v-show="isShow">
-    <div class="zj-add-person">
-      <popup-header>
-        <span slot="header-left">添加员工信息</span>
-      </popup-header>
-      <div class="archives">
-        <form action="">
-          <table class="archives-table">
-            <tr class="archives-item">
-              <td>
-                <div class="tab-item"><label for="username">
-                  <table>
-                    <tr class="child-item">
-                      <td>姓名：</td>
-                      <td>
-                        <el-input
-                          placeholder="请输入内容"
-                          v-model="userName"
-                          id="username"
-                          clearable class="item-input">
-                        </el-input>
-                      </td>
-                    </tr>
-                  </table>
-                </label></div>
-              </td>
-              <td>
-                <div class="tab-item">
-                  <table>
-                    <tr class="child-item">
-                      <td>性别：</td>
-                      <td>
-                        <el-radio v-model="userRadio" label="1">男</el-radio>
-                        <el-radio v-model="userRadio" label="2">女</el-radio>
-                      </td>
-                    </tr>
-                  </table>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="tab-item"><label for="userage">
-                  <table>
-                    <tr class="child-item">
-                      <td>年龄：</td>
-                      <td>
-                        <el-input-number v-model="userAge" controls-position="right" @change="handleChange" :min="1"
-                                         :max="100" id="userage"></el-input-number>
-                      </td>
-                    </tr>
-                  </table>
-                </label></div>
-              </td>
-              <td>
-                <div class="tab-item">
-                  <table>
-                    <tr class="child-item">
-                      <td>学历：</td>
-                      <td>
-                        <el-select v-model="value" clearable placeholder="请选择学历">
-                          <el-option
-                            v-for="item in ducationOptions"
-                            :key="item.value"
-                            :label="item.label"
-                            :value="item.value" id="usereducation">
-                          </el-option>
-                        </el-select>
-                      </td>
-                    </tr>
-                  </table>
-                </div>
-              </td>
-            </tr>
-            <tr class="archives-item">
-              <td>
-                <div class="tab-item"><label for="userprobation">
-                  <table>
-                    <tr class="child-item">
-                      <td>试用期（月）：</td>
-                      <td>
-                        <el-input
-                          placeholder="请输入试用期（月）"
-                          v-model="userProbation"
-                          id="userprobation"
-                          clearable class="item-input">
-                        </el-input>
-                      </td>
-                    </tr>
-                  </table>
-                </label></div>
-              </td>
-              <td>
-                <div class="tab-item"><label for="userpost">
-                  <table>
-                    <tr class="child-item">
-                      <td>职位：</td>
-                      <td>
-                        <el-input
-                          placeholder="请输入内容"
-                          v-model="userPost"
-                          id="userpost"
-                          clearable class="item-input">
-                        </el-input>
-                      </td>
-                    </tr>
-                  </table>
-                </label></div>
-              </td>
-            </tr>
-            <tr class="archives-item">
-              <td>
-                <div class="tab-item"><label for="usernation">
-                  <table>
-                    <tr class="child-item">
-                      <td>民族：</td>
-                      <td>
-                        <el-input
-                          placeholder="请输入内容"
-                          v-model="userNation"
-                          id="usernation"
-                          clearable class="item-input">
-                        </el-input>
-                      </td>
-                    </tr>
-                  </table>
-                </label></div>
-              </td>
-              <td>
-                <div class="tab-item"><label for="useridcard">
-                  <table>
-                    <tr class="child-item">
-                      <td>身份证号码：</td>
-                      <td>
-                        <el-input
-                          placeholder="请输入内容"
-                          v-model="useridcard"
-                          id="useridcard"
-                          clearable class="item-input">
-                        </el-input>
-                      </td>
-                    </tr>
-                  </table>
-                </label></div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="tab-item"><label for="userschool">
-                  <table>
-                    <tr class="child-item">
-                      <td>毕业院校：</td>
-                      <td>
-                        <el-input
-                          placeholder="毕业院校"
-                          v-model="userSchool"
-                          id="userschool"
-                          clearable class="item-input">
-                        </el-input>
-                      </td>
-                    </tr>
-                  </table>
-                </label></div>
-              </td>
-              <td>
-                <div class="tab-item"><label for="usernationality">
-                  <table>
-                    <tr class="child-item">
-                      <td>国籍：</td>
-                      <td>
-                        <el-input
-                          placeholder="请输入内容"
-                          v-model="userusErnationality"
-                          id="usernationality"
-                          clearable class="item-input">
-                        </el-input>
-                      </td>
-                    </tr>
-                  </table>
-                </label></div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="tab-item"><label for="userprovince">
-                  <table>
-                    <tr class="child-item">
-                      <td>省份：</td>
-                      <td>
-                        <el-input
-                          placeholder="请输入内容"
-                          v-model="userProvince"
-                          id="userprovince"
-                          clearable class="item-input">
-                        </el-input>
-                      </td>
-                    </tr>
-                  </table>
-                </label></div>
-              </td>
-              <td>
-                <div class="tab-item"><label for="usercity">
-                  <table>
-                    <tr class="child-item">
-                      <td>市：</td>
-                      <td>
-                        <el-input
-                          placeholder="请输入内容"
-                          v-model="userCity"
-                          id="usercity"
-                          clearable class="item-input">
-                        </el-input>
-                      </td>
-                    </tr>
-                  </table>
-                </label></div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="tab-item"><label for="useradress">
-                  <table>
-                    <tr class="child-item">
-                      <td>详细地址：</td>
-                      <td>
-                        <el-input
-                          placeholder="请输入内容"
-                          v-model="userAdress"
-                          id="useradress"
-                          clearable class="item-input">
-                        </el-input>
-                      </td>
-                    </tr>
-                  </table>
-                </label></div>
-              </td>
-              <td>
-                <div class="tab-item"><label for="userphone">
-                  <table>
-                    <tr class="child-item">
-                      <td>联系方式：</td>
-                      <td>
-                        <el-input
-                          placeholder="请输入联系方式"
-                          v-model="userPhone"
-                          id="userphone"
-                          clearable class="item-input">
-                        </el-input>
-                      </td>
-                    </tr>
-                  </table>
-                </label></div>
-              </td>
-            </tr>
-          </table>
-          <div class="upload">
+  <div class="cover base-font-size" v-show="isShow">
+    <div class="zj-add-person add-view">
+      <div class="content-top">
+        <span>添加员工信息</span>
+        <div class="close" @click="addShow">x</div>
+      </div>
+      <div class="archives ov-auto">
+        <el-form ref="form" :model="addPersonnelItemData" label-width="80px">
+          <div class="login-number-data">
+            <div class="data-title">账号信息</div>
             <table>
               <tr>
-                <td>上传附件</td>
                 <td>
-                  <el-upload
-                    style="display:inline-block"
-                    :limit="1"
-                    class="upload-demo"
-                    ref="upload"
-                    accept=".xls,.xlsx"
-                    action="/hqx/knowledge/importKnowledge"
-                    :file-list="fileList"
-                    :http-request="uploadSectionFile"
-                    :auto-upload="false">
-                    <el-button slot="trigger" size="small" type="primary" plain>选取文件</el-button>
-                    <el-button style="margin-left: 10px;" size="small" icon="el-icon-upload2" type="success" @click="submitUpload">导入</el-button>
-                  </el-upload>
+                  <el-form-item label="员工工号" class="base-font-size">
+                    <el-input size="small" disabled placeholder="直接用姓名登录"></el-input>
+                  </el-form-item>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <el-form-item label="密码" class="base-font-size">
+                    <el-input size="small" placeholder="输入密码" v-model="password" show-password></el-input>
+                  </el-form-item>
+                </td>
+                <td>
+                  <el-form-item label="确认密码" class="base-font-size">
+                    <el-input size="small" placeholder="输入密码" show-password v-model="confirmPassword" @blur="passwordTesting"></el-input>
+                  </el-form-item>
+                </td>
+                <td v-show="isTestWarningShow">
+                  <warning :warningData="'两次输入密码不一致！！！'"></warning>
                 </td>
               </tr>
             </table>
           </div>
+          <data-form @receiveData="receiveData" :isDisabled="false"></data-form>
           <div class="user-content">
+            <div class="data-title">其他信息</div>
             <label for="usercontent">
-              工作经历：
-              <el-input type="textarea" v-model="userContent" rows="5" id="usercontent" class="content"></el-input>
+              <div class="text-title">工作经历</div>
+              <el-input type="textarea" v-model="addPersonnelItemData.workExperience" rows="5" id="usercontent"
+                        class="content"></el-input>
             </label>
-          </div>
-          <div class="user-content">
             <label for="userevaluate">
-              面试结果（领导对这个人的印象）：
-              <el-input type="textarea" v-model="userEvaluate" rows="5" id="userevaluate" class="content"></el-input>
+              <div class="text-title">面试结果（领导对这个人的印象）</div>
+              <el-input type="textarea" v-model="addPersonnelItemData.interviewResults" rows="5" id="userevaluate"
+                        class="content"></el-input>
             </label>
           </div>
           <div class="user-submit">
-            <el-button type="primary" class="submit" @click="clickSubmit">提交</el-button>
+            <el-button type="primary" class="submit" @click="clickSubmit" size="small">提交</el-button>
           </div>
-        </form>
+        </el-form>
       </div>
+      <warning v-show="isSubmitWarnShow" :warningData="'请填入完整的信息！！！'"></warning>
     </div>
   </div>
 </template>
 
 <script>
-  import PopupHeader from 'components/content/PopupHeader'
+  import Warning from 'components/common/Warning'
+  import DataForm from 'components/content/dataForm/DataForm'
 
-  import {httpPost, postform} from 'network/quest'
+  import {addPersonnel} from 'network/personnel'
 
   export default {
-    name: "AddPersonnel",
+    name: 'AddPersonnel',
     data() {
       return {
         isShow: false,
-        userName: '',
-        userAge: 0,
-        userNation: '',
-        ducationOptions: [
-          {
-            value: '选项1',
-            label: '高中'
-          },
-          {
-            value: '选项2',
-            label: '大专'
-          },
-          {
-            value: '选项3',
-            label: '本科'
-          },
-          {
-            value: '选项4',
-            label: '研究生'
-          },
-          {
-            value: '选项5',
-            label: '博士'
-          }
-        ],
-        value: '',
-        userRadio: '1',
-        userSchool: '',
-        userusErnationality: '',
-        userProvince: '',
-        userCity: '',
-        userAdress: '',
-        userPhone: '',
-        useridcard: '',
-        userContent: '',
-        userProbation: '',
-        userPost: '',
-        userEvaluate: '',
-        fileList: [],
-        personnelStaff: {}
+        addPersonnelItemData: {
+          password: '', // 密码
+          workExperience: '', // 工作经历
+          interviewResults: '' // 面试结果
+        },
+        password: '',
+        confirmPassword: '',
+        isTestWarningShow: false,
+        isSubmitWarnShow: false,
+        clearFlag: true
       }
     },
-    beforeCreate() {
-      this.$bus.$on('zj_addOnFlag', v => { // 获取开启弹窗开关
-        this.isShow = v
-      })
-      this.$bus.$on('zj_offFlag', v => { // 获取关闭弹窗开关
-        this.isShow = v
-      } )
-    },
     methods: {
-      handleChange() {
-
+      /**
+       * 关闭添加员工的界面
+       * */
+      addShow() {
+        this.$emit('addPersonnelShowChange', this.isShow)
       },
-      submitUpload() {
-        let list = document.getElementsByClassName('el-upload-list__item is-ready')
-        if(list.length == 0){
-          this.$message({
-            type:'warning',
-            message:"请选择需要导入的模板！"
-          })
-          return;
+      /**
+       * 1. 检测两次密码是否输入一致
+       * */
+      passwordTesting() {
+        if(this.password !== this.confirmPassword) {
+          this.isTestWarningShow = true
+        }else {
+          this.isTestWarningShow = false
+          this.addPersonnelItemData.password = this.confirmPassword
         }
-        this.$refs.upload.submit();
       },
-      uploadSectionFile(param){ // 上传文件
-        var fileObj = param.file;
-        // FormData 对象
-        var form = new FormData();
-        // 文件对象
-        form.append("file", fileObj);
-        form.append("userId", this.userId);
-        form.append("userName", this.userName);
-        this.GLOBAL.POST('/hqx/knowledge/importKnowledge',form).then(res => {
-          if(res.data.success == true){
-            this.$message({
-              type:'success',
-              message:res.data.msg
-            })
-            this.fileList =[]
-          } else {
-            this.$message({
-              type:'success',
-              message:res.data.msg
-            })
-            this.fileList =[]
+      /**
+       * 2. 接收子组件传过来的值，并且加入到需要发送给服务器的数据中
+       * */
+      receiveData(data) {
+        for(let item in data) {
+          this.addPersonnelItemData[item] = data[item]
+        }
+      },
+      /**
+       * 3. 添加员工信息
+       * */
+      clickSubmit() {
+        /**1. 判断用户是否填完完整信息*/
+        console.log(this.addPersonnelItemData);
+        for(let item in this.addPersonnelItemData) {
+          if(this.addPersonnelItemData[item] === '') {
+            // 没有完整输入提示用户输入完整信息
+            this.isSubmitWarnShow = true
+            setTimeout(() => {this.isSubmitWarnShow = false}, 2000)
+            return
           }
-        })
-      },
-      clickSubmit() { // 提交信息
-
-        if(this.sex === '男') {
-          this.sex = 1
-        }else if(this.sex === '女') {
-          this.sex = 0
         }
-        // 添加员工信息
-        this.personnelStaff.age = this.userAge
-        this.personnelStaff.city = this.userCity
-        this.personnelStaff.contactInformation = this.userPhone
-        this.personnelStaff.departmentId = ''
-        this.personnelStaff.detailedAddress = this.userAdress
-        this.personnelStaff.education = ''
-        this.personnelStaff.enclosure = ''
-        this.personnelStaff.entryDate = ''
-        this.personnelStaff.entryPosition = this.userPost
-        this.personnelStaff.gender = this.sex
-        this.personnelStaff.graduatedSchool = this.userSchool
-        this.personnelStaff.id = parseInt(Math.random() * 10000)
-        this.personnelStaff.identityCardNumber = this.useridcard
-        this.personnelStaff.interviewResults = this.userEvaluate
-        this.personnelStaff.name = this.userName
-        this.personnelStaff.nation = this.userNation
-        this.personnelStaff.nationality = this.userusErnationality
-        this.personnelStaff.otherSubsidies = ''
-        this.personnelStaff.password = ''
-        this.personnelStaff.probationPeriod = this.userProbation
-        this.personnelStaff.role = ''
-        this.personnelStaff.status = 0
-        this.personnelStaff.workExperience = this.userContent
 
-        this.$confirm('确认提交, 是否继续?', '提示', {
+        /**2. 提交数据*/
+        this.$confirm('确定提交此数据吗?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          httpPost('/personnel/staff/add', this.personnelStaff).then(res => {
-            console.log(res);
+          // 发送请求
+          addPersonnel(this.addPersonnelItemData).then(res => {
+            // 判断服务器返回的状态
+            if(res.code === 200) {
+              this.$message({
+                type: 'success',
+                message: '提交成功!'
+              });
+
+              // 提交成功后的处理
+              this.addShow() // 关闭添加界面
+              for(let i in this.addPersonnelItemData) { // 清空编辑表单数据
+                this.addPersonnelItemData[i] = ''
+              }
+            }else {
+              this.$message({
+                type: 'error',
+                message: '提交失败!'
+              });
+            }
           }).catch(err => {
             console.log(err);
+            this.$message({
+              type: 'error',
+              message: '提交失败!'
+            });
           })
 
-          this.$message({
-            type: 'success',
-            message: '提交成功!'
-          });
         }).catch(() => {
           this.$message({
             type: 'info',
-            message: '已取消提交'
+            message: '提交添加'
           });
         });
-        this.isShow = false
-      }
+
+       }
     },
     components: {
-      PopupHeader
+      Warning,
+      DataForm
     }
   }
+
 </script>
 
-<style scoped lang="less">
+<style lang="less">
   .cover {
     .zj-add-person {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate3d(-50%, -50%, 0);
-      width: 900px;
-      height: 850px;
-      border: 1px solid #ccc;
-      background-color: #fff;
-      border-radius: 5px;
-
-      .title {
-        position: relative;
-        top: 0;
-        right: 0;
-        left: 0;
-        padding-left: 15px;
-        width: 100%;
-        height: 60px;
-        background-color: cornflowerblue;
-        font-size: 20px;
-        line-height: 60px;
-        box-sizing: border-box;
-        z-index: 9;
-
-        .close {
-          position: absolute;
-          right: 20px;
-          bottom: 50%;
-          transform: translateY(50%);
-          width: 30px;
-          height: 30px;
-          text-align: center;
-          line-height: 30px;
-          cursor: pointer;
-        }
-      }
 
       .archives {
         padding: 20px;
-        width: 100%;
-        height: 790px;
-        overflow: auto;
 
-        .archives-item > td {
-          margin-left: 20px;
-        }
-
-        .tab-item {
-          color: #000;
-          width: 400px;
-
-          .child-item td:first-of-type {
-            width: 100px;
-          }
-
-          .child-item td:last-of-type {
-            width: 300px;
-          }
-
-          .item-input {
-            width: 100%;
-          }
-        }
-
-        .user-content {
-          padding-top: 40px;
-          color: #000;
-
-          .content {
-            margin-top: 10px;
-          }
-        }
-
-        .upload {
-          padding-top: 5px;
-          color: #000;
-
-          td:first-of-type {
-            width: 100px;
-          }
-        }
-
-        .user-submit {
+        .data-title {
           width: 100%;
+          height: 40px;
+          line-height: 40px;
+          font-size: 16px;
+          font-weight: 700;
+          border-bottom: 1px solid #eee;
+        }
 
-          .submit {
-            margin-top: 30px;
-            margin-left: 50%;
-            transform: translateX(-50%);
-            width: 200px;
-          }
+        .el-form-item {
+          margin: 0;
+        }
+        label.el-form-item__label {
+           text-align: right;
+           vertical-align: middle;
+           float: left;
+           font-size: 12px;
+           color: #606266;
+           line-height: 40px;
+           padding: 0 12px 0 0;
+           -webkit-box-sizing: border-box;
+           box-sizing: border-box;
+         }
+        .el-radio__label {
+          font-size: 12px;
+        }
+
+        td {
+          padding-right: 50px;
+          height: 40px;
+          line-height: 40px;
+        }
+        .text-title {
+          padding: 10px 0;
+        }
+        .user-submit {
+          padding: 10px 0;
         }
       }
     }

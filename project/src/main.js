@@ -39,7 +39,12 @@ import {
   Checkbox,
   CheckboxGroup,
   RadioGroup,
-  Pagination
+  Pagination,
+  Tooltip,
+  Alert,
+  Loading,
+  Scrollbar,
+  Dialog
 } from 'element-ui'
 
 Vue.use(Button)
@@ -67,6 +72,11 @@ Vue.use(Checkbox)
 Vue.use(CheckboxGroup)
 Vue.use(RadioGroup)
 Vue.use(Pagination)
+Vue.use(Tooltip)
+Vue.use(Alert)
+Vue.use(Loading)
+Vue.use(Scrollbar)
+Vue.use(Dialog)
 
 
 
@@ -83,6 +93,7 @@ Vue.component(table.name, table)
 
 Vue.prototype.$message = Message
 Vue.prototype.$confirm = MessageBox
+Vue.prototype.$ELEMENT = { size: 'small' };
 
 // 引入 Echarts（暂时还没用上
 /* import echarts from 'echarts'

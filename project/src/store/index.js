@@ -9,7 +9,8 @@ import actions from './actions'
 Vue.use(Vuex)
 
 const state = {
-  list: []
+  personnelList: [], // 所有员工列表
+  recruitPlanList: [] // 招聘计划列表
 }
 
 const store = new Vuex.Store({

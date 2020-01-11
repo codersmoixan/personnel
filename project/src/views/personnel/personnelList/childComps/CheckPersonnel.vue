@@ -1,121 +1,113 @@
 <template>
   <div class="cover" v-show="checkClose">
-    <div class="check-personnel">
-      <div class="title">
-        <span>员工详细信息</span>
+    <div class="check-personnel add-view">
+      <div class="title content-top">
+        <span>员工详细信息：{{personnelData.name}}（{{personnelData.id}}）</span>
         <div class="close" @click="closeFlag">x</div>
       </div>
-      <div class="show-personnel-data">
-        <el-form ref="form" :model="personnelData" label-width="150px">
-          <el-form-item label="姓名：">
-            <el-col :span="5">
-              <el-input :value="personnelData.name" disabled></el-input>
-            </el-col>
-          </el-form-item>
-          <el-form-item label="工号：">
-            <el-col :span="5">
-              <el-input :value="null" disabled></el-input>
-            </el-col>
-          </el-form-item>
-          <el-form-item label="年龄：">
-            <el-col :span="4">
-              <el-input :value="personnelData.age" disabled></el-input>
-            </el-col>
-          </el-form-item>
-          <el-form-item label="性别：">
-            <el-col :span="4">
-              <el-input :value="personnelData.gender ? '男' : '女'" disabled></el-input>
-            </el-col>
-          </el-form-item>
-          <el-form-item label="学历：">
-            <el-col :span="5">
-              <el-input :value="personnelData.education" disabled></el-input>
-            </el-col>
-          </el-form-item>
-          <el-form-item label="毕业院校：">
-            <el-col :span="10">
-              <el-input :value="personnelData.graduatedSchool" disabled></el-input>
-            </el-col>
-          </el-form-item>
-          <el-form-item label="民族：">
-            <el-col :span="10">
-              <el-input :value="personnelData.nation" disabled></el-input>
-            </el-col>
-          </el-form-item>
-          <el-form-item label="国籍：">
-            <el-col :span="10">
-              <el-input :value="personnelData.nationality" disabled></el-input>
-            </el-col>
-          </el-form-item>
-          <el-form-item label="户籍：">
-            <el-col :span="10">
-              <el-input :value="personnelData.province" disabled></el-input>
-            </el-col>
-          </el-form-item>
-          <el-form-item label="市：">
-            <el-col :span="10">
-              <el-input :value="personnelData.city" disabled></el-input>
-            </el-col>
-          </el-form-item>
-          <el-form-item label="详细地址：">
-            <el-col :span="10">
-              <el-input :value="personnelData.detailedAddress" disabled></el-input>
-            </el-col>
-          </el-form-item>
-          <el-form-item label="身份证号码：">
-            <el-col :span="10">
-              <el-input :value="personnelData.identityCardNumber" disabled></el-input>
-            </el-col>
-          </el-form-item>
-          <el-form-item label="试用期：">
-            <el-col :span="10">
-              <el-input :value="personnelData.probationPeriod" disabled></el-input>
-            </el-col>
-          </el-form-item>
-          <el-form-item label="职位：">
-            <el-col :span="10">
-              <el-input :value="personnelData.entryPosition" disabled></el-input>
-            </el-col>
-          </el-form-item>
-          <el-form-item label="公司担任角色：">
-            <el-col :span="10">
-              <el-input :value="personnelData.role" disabled></el-input>
-            </el-col>
-          </el-form-item>
-          <el-form-item label="入职日期：">
-            <el-col :span="10">
-              <el-input :value="personnelData.entryDate" disabled></el-input>
-            </el-col>
-          </el-form-item>
-          <el-form-item label="其他补贴：">
-            <el-col :span="10">
-              <el-input :value="personnelData.otherSubsidies" disabled></el-input>
-            </el-col>
-          </el-form-item>
-          <el-form-item label="是否在职：">
-            <el-col :span="10">
-              <el-input :value="personnelData.status ? '在职' : '离职'" disabled></el-input>
-            </el-col>
-          </el-form-item>
-          <el-form-item label="联系方式：">
-            <el-col :span="10">
-              <el-input :value="personnelData.contactInformation" disabled></el-input>
-            </el-col>
-          </el-form-item>
-          <el-form-item label="工作经历：">
-            <el-input type="textarea" v-model="personnelData.workExperience" :rows="8" disabled></el-input>
-          </el-form-item>
-          <el-form-item label="面试结果：">
-            <el-input type="textarea" v-model="personnelData.interviewResults" :rows="8" disabled></el-input>
-          </el-form-item>
-        </el-form>
+      <div class="show-personnel-data ov-auto">
+        <div class="basic-data">
+          <div class="data-title">基本信息</div>
+          <table cellpadding="0" cellspacing="0">
+            <tr>
+              <td class="item-title">员工ID</td>
+              <td>{{personnelData.id}}</td>
+              <td class="item-title">员工姓名</td>
+              <td>{{personnelData.name}}</td>
+            </tr>
+            <tr>
+              <td class="item-title">性别</td>
+              <td>{{personnelData.gender}}</td>
+              <td class="item-title">年龄</td>
+              <td>{{personnelData.age}}</td>
+            </tr>
+            <tr>
+              <td class="item-title">学历</td>
+              <td>{{personnelData.education}}</td>
+              <td class="item-title">毕业院校</td>
+              <td>{{personnelData.graduatedSchool}}</td>
+            </tr>
+            <tr>
+              <td class="item-title">身份证号码</td>
+              <td>{{personnelData.identityCardNumber}}</td>
+              <td class="item-title">国籍</td>
+              <td>{{personnelData.nationality}}</td>
+            </tr>
+            <tr>
+              <td class="item-title">民族</td>
+              <td>{{personnelData.nation}}</td>
+              <td class="item-title">籍贯</td>
+              <td>{{personnelData.province}}</td>
+            </tr>
+            <tr>
+              <td class="item-title">市区</td>
+              <td>{{personnelData.city}}</td>
+              <td class="item-title">联系方式</td>
+              <td>{{personnelData.contactInformation}}</td>
+            </tr>
+            <tr>
+              <td class="item-title">详细地址</td>
+              <td>{{personnelData.detailedAddress}}</td>
+              <td class="item-title"></td>
+              <td></td>
+            </tr>
+          </table>
+        </div>
+        <div class="subsidiary-data">
+          <div class="data-title">附属信息</div>
+          <table cellpadding="0" cellspacing="0">
+            <tr>
+              <td class="item-title">公司角色</td>
+              <td>{{personnelData.role}}</td>
+              <td class="item-title">在职部门</td>
+              <td>{{personnelData.departmentName}}</td>
+            </tr>
+            <tr>
+              <td class="item-title">员工状态</td>
+              <td>{{personnelData.status}}</td>
+              <td class="item-title">试用期</td>
+              <td>{{personnelData.probationPeriod}}</td>
+            </tr>
+            <tr>
+              <td class="item-title">其他补贴</td>
+              <td>{{personnelData.otherSubsidies}}</td>
+              <td class="item-title"></td>
+              <td></td>
+            </tr>
+          </table>
+        </div>
+        <div class="outer-data">
+          <div class="data-title">其他信息</div>
+          <table cellpadding="0" cellspacing="0">
+            <tr>
+              <td class="item-title">工作经历</td>
+            </tr>
+            <tr>
+              <td class="text">
+                <div class="content">{{personnelData.workExperience}}</div>
+              </td>
+            </tr>
+          </table>
+          <div class="mar-top">
+            <table>
+              <tr>
+                <td class="item-title">面试结果</td>
+              </tr>
+              <tr>
+                <td class="text">
+                  <div class="content">{{personnelData.interviewResults}}</div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import PopupHeader from 'components/content/PopupHeader'
+
 
   export default {
     name: "CheckPersonnel",
@@ -146,44 +138,64 @@
       }
 
     },
-    components: {
-      PopupHeader
-    }
+    components: {}
   }
 </script>
 
 <style scoped lang="less">
   .cover {
     .check-personnel {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate3d(-50%, -50%, 0);
-      width: 900px;
-      height: 800px;
-      overflow: hidden;
-      border: 1px solid #ccc;
-      background-color: #fff;
-      border-radius: 5px;
-      box-sizing: border-box;
-
-      .title {
-        position: relative;
-        padding-left: 20px;
-        width: 100%;
-        height: 50px;
-        background: #3a8ee6;
-        font-size: 18px;
-        line-height: 50px;
-
-      }
-
       .show-personnel-data {
-        padding: 20px;
         width: 100%;
-        height: 750px;
-        overflow: auto;
-        color: #000;
+
+        .data-title {
+          height: 40px;
+          line-height: 40px;
+          font-weight: 700;
+          color: #777;
+          font-size: 16px;
+        }
+
+        table {
+          width: 100%;
+          border: 1px solid #ccc;
+          border-collapse: collapse; // 合并表格边框
+          tr {
+            width: 100%;
+
+            td {
+              padding-left: 20px;
+              width: 25%;
+              height: 40px;
+              box-sizing: border-box;
+              border: 1px solid #ccc;
+            }
+
+            td.item-title {
+              background-color: #eee;
+            }
+          }
+        }
+        .outer-data {
+          table {
+            border: none;
+            td {
+              border: none;
+            }
+            td.item-title {
+              background-color: #fff;
+              font-weight: 700;
+            }
+            td.text {
+              padding: 0;
+            }
+            .content {
+              width: 100%;
+              height: 100px;
+              border: 1px solid #ccc;
+            }
+          }
+        }
       }
     }
 

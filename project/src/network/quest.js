@@ -1,15 +1,17 @@
 // 数据请求的封装
 
-import axios from 'axios'
+import axios from 'axios/index'
 import qs from 'qs'
 
 import options from './options'
 
 // 域名地址
-axios.defaults.baseURL = options.personnelURL
+// axios.defaults.baseURL = options.loginURL //登录界面
+axios.defaults.baseURL = options.personnelURL // 人事系统
 // 默认请求头
 // axios.defaults.headers.post['Content-type'] = 'application/json'
 axios.defaults.headers['Content-Type'] = 'application/json'
+axios.defaults.timeout = 10000
 // axios.defaults.transformRequest = [function (data) {
 //   return qs.stringify(data)
 // }]
@@ -21,8 +23,19 @@ const instance = axios.create({
 // http request 拦截器
 axios.interceptors.request.use(config => {
   if(config.method === 'post') {
-    config.data =JSON.stringify(config.data)
+    // 判断请求头的 content-type 处理相应的数据
+    if(config.headers['Content-Type'] === 'application/json') {
+      config.data = JSON.stringify(config.data)
+    }else {
+      config.data = qs.stringify(config.data)
+    }
   }
+  return config
+}, err => {
+  return Promise.reject(err)
+})
+// http response 拦截器
+axios.interceptors.response.use(config => {
   return config
 }, err => {
   return Promise.reject(err)

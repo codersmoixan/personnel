@@ -23,6 +23,7 @@
           v-model="formSearch.pageSize" class="input">
         </el-input>
         <el-button type="primary" class="btn" @click="searchClick" size="small">搜索</el-button>
+        <el-button type="primary" class="btn" @click="getAllData" size="small">加载全部</el-button>
       </div>
     </el-form>
   </div>
@@ -43,16 +44,31 @@
     data() {
       return {
         formSearch: {
-          searcheId: '',
+          searchId: '',
           searchName: '',
           page: '',
           pageSize: ''
+        },
+        againData: {
+          page: 1,
+          pageSize: 10
         }
       }
     },
     methods: {
+      // 发送查询的数据
       searchClick() {
-        this.$emit('searchData', this.formSearch)
+        let flag = false
+        // 如果用户没有输入需要查询的参数，则不能发送查询的请求，并提示用户输入正确的参数
+        for(let key in this.formSearch) {
+          if(this.formSearch[key]) flag = true
+        }
+        flag ? this.$emit('searchData', this.formSearch) : this.$message.warning('请输入需要查询的参数！！！')
+        this.formSearch = {}
+      },
+      // 加载全部数据
+      getAllData() {
+        this.$emit('againRendering', this.againData)
       }
     }
   }
@@ -60,9 +76,8 @@
 
 <style scoped lang="less">
   .zj-p-search {
-
     .demo-input-size {
-      padding: 10px 0;
+      padding-bottom: 10px;
 
       .input {
         margin-right: 10px;
