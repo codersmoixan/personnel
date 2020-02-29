@@ -399,3 +399,37 @@ export function deleteGroup(id) {
     id
   })
 }
+
+/**
+ * 11. 公告管理
+ * */
+// 1. 获取公告列表
+export function getNoticeList(data) {
+  return httpGet('/personnel/announcement/list', {
+    page: data.page,
+    pageSize: data.pageSize
+  })
+}
+// 2. 查询某条公告
+export function queryNoticeById(data) {
+  return httpGet('/personnel/announcement/list/condition', {
+    id: data.id,
+    name: data.name,
+    page: data.page,
+    pageSize: data.pageSize
+  })
+}
+// 3. 添加公告
+export function addNotice(data) {
+  return httpPost('/personnel/announcement/add', data)
+}
+// 4. 更新公告
+export function updateNotice(data) {
+  return httpPost('/personnel/announcement/update', data)
+}
+// 5. 删除公告
+export function deleteNotice(id) {
+  return httpGet('/personnel/announcement/delete', {
+    id
+  })
+}

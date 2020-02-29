@@ -26,6 +26,7 @@ const StaffActivity = () => import('views/personnel/staffactivity/StaffActivity'
 const GroupList = () => import('views/personnel/groupManage/groupList/GroupList')
 const MemberList = () => import('views/personnel/groupManage/memberList/MemberList')
 const MemberManage = () => import('views/personnel/groupManage/manage/MemberManage')
+const NoticeManage = () => import('views/personnel/noticeManage/NoticeManage')
 
 Vue.use(VueRouter)
 
@@ -63,6 +64,8 @@ const router = new VueRouter({
         { path: '/personnel/train', component: TrainManage },
         // 员工活动
         { path: '/personnel/activity', component: StaffActivity },
+        // 公告管理
+        { path: '/personnel/notice', component: NoticeManage },
         // 薪资管理默认跳转
         { path: '/personnel/salary', redirect: '/personnel/salary/salaryday'},
         { path: '/personnel/salary/salaryday', component: SalaryDay },

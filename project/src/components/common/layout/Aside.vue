@@ -112,6 +112,11 @@
                 name: '员工活动',
                 path: '/personnel/activity',
                 iconClassName: 'el-icon-s-flag'
+              },
+              {
+                name: '公告管理',
+                path: '/personnel/notice',
+                iconClassName: 'el-icon-bell'
               }
             ]
           }
